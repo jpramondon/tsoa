@@ -455,6 +455,24 @@ export function RegisterRoutes(app: any) {
       const promise=controller.getGeneratesTags.apply(controller, validatedArgs);
       promiseHandler(controller, promise, response, next);
     });
+  app.get('/v1/GetTest/CustomOperationId',
+    function(request: any, response: any, next: any) {
+      const args={
+      };
+
+      let validatedArgs: any[]=[];
+      try {
+        validatedArgs=getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller=new GetTestController();
+
+
+      const promise=controller.getCustomOperationId.apply(controller, validatedArgs);
+      promiseHandler(controller, promise, response, next);
+    });
   app.get('/v1/GetTest/HandleBufferType',
     function(request: any, response: any, next: any) {
       const args={
@@ -1027,7 +1045,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/MethodTest/ApiSecurity',
-    authenticateMiddleware([{ "name": "api_key" }]),
+    authenticateMiddleware([{ "api_key": [] }]),
     function(request: any, response: any, next: any) {
       const args={
       };
@@ -1046,7 +1064,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/MethodTest/OauthSecurity',
-    authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }]),
+    authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }]),
     function(request: any, response: any, next: any) {
       const args={
       };
@@ -1065,7 +1083,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/MethodTest/OauthOrAPIkeySecurity',
-    authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }, { "name": "api_key" }]),
+    authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }, { "api_key": [] }]),
     function(request: any, response: any, next: any) {
       const args={
       };
@@ -1081,6 +1099,25 @@ export function RegisterRoutes(app: any) {
 
 
       const promise=controller.oauthOrAPIkeySecurity.apply(controller, validatedArgs);
+      promiseHandler(controller, promise, response, next);
+    });
+  app.get('/v1/MethodTest/OauthAndAPIkeySecurity',
+    authenticateMiddleware([{ "api_key": [], "tsoa_auth": ["write:pets", "read:pets"] }]),
+    function(request: any, response: any, next: any) {
+      const args={
+      };
+
+      let validatedArgs: any[]=[];
+      try {
+        validatedArgs=getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller=new MethodController();
+
+
+      const promise=controller.oauthAndAPIkeySecurity.apply(controller, validatedArgs);
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/MethodTest/DeprecatedMethod',
@@ -1481,7 +1518,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/SecurityTest',
-    authenticateMiddleware([{ "name": "api_key" }]),
+    authenticateMiddleware([{ "api_key": [] }]),
     function(request: any, response: any, next: any) {
       const args={
         request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
@@ -1500,8 +1537,28 @@ export function RegisterRoutes(app: any) {
       const promise=controller.GetWithApi.apply(controller, validatedArgs);
       promiseHandler(controller, promise, response, next);
     });
+  app.get('/v1/SecurityTest/Hapi',
+    authenticateMiddleware([{ "api_key": [] }]),
+    function(request: any, response: any, next: any) {
+      const args={
+        request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
+      };
+
+      let validatedArgs: any[]=[];
+      try {
+        validatedArgs=getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller=new SecurityTestController();
+
+
+      const promise=controller.GetWithApiForHapi.apply(controller, validatedArgs);
+      promiseHandler(controller, promise, response, next);
+    });
   app.get('/v1/SecurityTest/Koa',
-    authenticateMiddleware([{ "name": "api_key" }]),
+    authenticateMiddleware([{ "api_key": [] }]),
     function(request: any, response: any, next: any) {
       const args={
         request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
@@ -1521,7 +1578,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/SecurityTest/Oauth',
-    authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }]),
+    authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }]),
     function(request: any, response: any, next: any) {
       const args={
         request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
@@ -1541,7 +1598,7 @@ export function RegisterRoutes(app: any) {
       promiseHandler(controller, promise, response, next);
     });
   app.get('/v1/SecurityTest/OauthOrAPIkey',
-    authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }, { "name": "api_key" }]),
+    authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }, { "api_key": [] }]),
     function(request: any, response: any, next: any) {
       const args={
         request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
@@ -1557,7 +1614,27 @@ export function RegisterRoutes(app: any) {
       const controller=new SecurityTestController();
 
 
-      const promise=controller.GetWithDoubleSecurity.apply(controller, validatedArgs);
+      const promise=controller.GetWithOrSecurity.apply(controller, validatedArgs);
+      promiseHandler(controller, promise, response, next);
+    });
+  app.get('/v1/SecurityTest/OauthAndAPIkey',
+    authenticateMiddleware([{ "api_key": [], "tsoa_auth": ["write:pets", "read:pets"] }]),
+    function(request: any, response: any, next: any) {
+      const args={
+        request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
+      };
+
+      let validatedArgs: any[]=[];
+      try {
+        validatedArgs=getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller=new SecurityTestController();
+
+
+      const promise=controller.GetWithAndSecurity.apply(controller, validatedArgs);
       promiseHandler(controller, promise, response, next);
     });
 

@@ -54,6 +54,7 @@ export function RegisterRoutes(router: any) {
             } catch (error) {
               context.status = error.status || 500;
               context.body = error;
+              context.throw(context.status, error.message, error);
               return next();
             }
 
@@ -71,29 +72,49 @@ export function RegisterRoutes(router: any) {
 
   {{#if useSecurity}}
   function authenticateMiddleware(security: TsoaRoute.Security[] = []) {
-    return (context: any, next: any) => {
-        let responded = 0;
-        let success = false;
-        for (const secMethod of security) {
-            koaAuthentication(context.request, secMethod.name, secMethod.scopes).then((user: any) => {
-                // only need to respond once
-                if (!success) {
-                    success = true;
-                    responded++;
-                    context.request['user'] = user;
-                    next();
-                }
-            })
-            .catch((error: any) => {
-                responded++;
-                if (responded == security.length && !success) {
-                    context.status = error.status || 401;
-                    context.body = error;
-                    next();
-                }
-            })
-        }
-    }
+      return (context: any, next: any) => {
+          let responded = 0;
+          let success = false;
+
+          const succeed = function(user: any) {
+              if (!success) {
+                  success = true;
+                  responded++;
+                  context.request['user'] = user;
+                  next();
+              }
+          }
+
+          const fail = function(error: any) {
+              responded++;
+              if (responded == security.length && !success) {
+                context.status = error.status || 401;
+                context.body = error;
+                context.throw(context.status, error.message, error);
+                next();
+              }
+          }
+
+          for (const secMethod of security) {
+              if (Object.keys(secMethod).length > 1) {
+                  let promises: Promise<any>[] = [];
+
+                  for (const name in secMethod) {
+                      promises.push(koaAuthentication(context.request, name, secMethod[name]));
+                  }
+
+                  Promise.all(promises)
+                      .then((users) => { succeed(users[0]); })
+                      .catch(fail);
+              } else {
+                  for (const name in secMethod) {
+                      koaAuthentication(context.request, name, secMethod[name])
+                          .then(succeed)
+                          .catch(fail);
+                  }
+              }
+          }
+      }
   }
   {{/if}}
 
@@ -127,6 +148,7 @@ export function RegisterRoutes(router: any) {
         .catch((error: any) => {
             context.status = error.status || 500;
             context.body = error;
+            context.throw(context.status, error.message, error);
             next();
         });
     }

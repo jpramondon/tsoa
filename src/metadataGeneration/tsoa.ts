@@ -24,6 +24,7 @@ export namespace Tsoa {
     security: Security[];
     summary?: string;
     isHidden: boolean;
+    operationId?: string;
 
   }
 
@@ -43,8 +44,7 @@ export namespace Tsoa {
   }
 
   export interface Security {
-    name: string;
-    scopes?: string[];
+    [key: string]: string[];
   }
 
   export interface Response {

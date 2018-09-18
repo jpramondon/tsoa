@@ -1,5 +1,5 @@
 import { MethodDecoratorReturn } from '../interfaces/decorator-return';
 
-export function Example<T>(exampleModel: T): MethodDecoratorReturn {
+export function OperationId(value: string): MethodDecoratorReturn {
   return () => { return; };
 }

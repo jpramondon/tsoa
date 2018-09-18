@@ -239,8 +239,8 @@ export function RegisterRoutes(server: any) {
   server.route({
     method: 'get',
     path: '/v1',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -248,21 +248,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new RootController();
 
         const promise=controller.rootHandler.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/rootControllerMethodWithPath',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -270,21 +272,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new RootController();
 
         const promise=controller.rootControllerMethodWithPath.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'delete',
     path: '/v1/DeleteTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -292,21 +296,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new DeleteTestController();
 
         const promise=controller.deleteWithReturnValue.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'delete',
     path: '/v1/DeleteTest/Current',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -314,21 +320,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new DeleteTestController();
 
         const promise=controller.deleteCurrent.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'delete',
     path: '/v1/DeleteTest/{numberPathParam}/{booleanPathParam}/{stringPathParam}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           numberPathParam: { "in": "path", "name": "numberPathParam", "required": true, "dataType": "double" },
           stringPathParam: { "in": "path", "name": "stringPathParam", "required": true, "dataType": "string" },
@@ -342,21 +350,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new DeleteTestController();
 
         const promise=controller.getModelByParams.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -364,21 +374,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/Current',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -386,21 +398,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getCurrentModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/ClassModel',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -408,21 +422,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getClassModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/Multi',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -430,21 +446,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getMultipleModels.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/{numberPathParam}/{booleanPathParam}/{stringPathParam}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           numberPathParam: { "in": "path", "name": "numberPathParam", "required": true, "dataType": "double", "validators": { "isDouble": { "errorMsg": "numberPathParam" }, "minimum": { "value": 1 }, "maximum": { "value": 10 } } },
           stringPathParam: { "in": "path", "name": "stringPathParam", "required": true, "dataType": "string", "validators": { "minLength": { "value": 1 }, "maxLength": { "value": 10 } } },
@@ -459,21 +477,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getModelByParams.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/ResponseWithUnionTypeProperty',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -481,21 +501,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getResponseWithUnionTypeProperty.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/UnionTypeResponse',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -503,21 +525,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getUnionTypeResponse.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/Request',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -526,21 +550,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getRequest.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/DateParam',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           date: { "in": "query", "name": "date", "required": true, "dataType": "datetime" },
         };
@@ -549,21 +575,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getByDataParam.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/ThrowsError',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -571,21 +599,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getThrowsError.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/GeneratesTags',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -593,21 +623,47 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getGeneratesTags.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
+      }
+    }
+  });
+  server.route({
+    method: 'get',
+    path: '/v1/GetTest/CustomOperationId',
+    options: {
+      handler: (request: any, h: any) => {
+        const args={
+        };
+
+        let validatedArgs: any[]=[];
+        try {
+          validatedArgs=getValidatedArgs(args, request);
+        } catch (err) {
+          return h
+            .response(err)
+            .code(err.status||500);
+        }
+
+        const controller=new GetTestController();
+
+        const promise=controller.getCustomOperationId.apply(controller, validatedArgs);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/HandleBufferType',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           buffer: { "in": "query", "name": "buffer", "required": true, "dataType": "buffer" },
         };
@@ -616,21 +672,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getBuffer.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/GenericModel',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -638,21 +696,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getGenericModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/GenericModelArray',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -660,21 +720,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getGenericModelArray.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/GenericPrimitive',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -682,21 +744,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getGenericPrimitive.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/GetTest/GenericPrimitiveArray',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -704,21 +768,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new GetTestController();
 
         const promise=controller.getGenericPrimitiveArray.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/PatchTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
         };
@@ -727,21 +793,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PatchTestController();
 
         const promise=controller.patchModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/PatchTest/Location',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -749,21 +817,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PatchTestController();
 
         const promise=controller.patchModelAtLocation.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/PatchTest/Multi',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -771,21 +841,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PatchTestController();
 
         const promise=controller.patchWithMultiReturn.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/PatchTest/WithId/{id}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
         };
@@ -794,21 +866,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PatchTestController();
 
         const promise=controller.patchWithId.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
         };
@@ -817,21 +891,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/PostTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
         };
@@ -840,21 +916,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.updateModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/WithDifferentReturnCode',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
         };
@@ -863,21 +941,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postWithDifferentReturnCode.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/WithClassModel',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestClassModel" },
         };
@@ -886,21 +966,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postClassModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/Location',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -908,21 +990,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postModelAtLocation.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/Multi',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -930,21 +1014,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postWithMultiReturn.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/WithId/{id}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
         };
@@ -953,21 +1039,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postWithId.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/WithBodyAndQueryParams',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
           query: { "in": "query", "name": "query", "required": true, "dataType": "string" },
@@ -977,21 +1065,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.postWithBodyAndQueryParams.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/PostTest/GenericBody',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           genericReq: { "in": "body", "name": "genericReq", "required": true, "ref": "GenericRequestTestModel" },
         };
@@ -1000,21 +1090,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PostTestController();
 
         const promise=controller.getGenericRequest.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'put',
     path: '/v1/PutTest',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           model: { "in": "body", "name": "model", "required": true, "ref": "TestModel" },
         };
@@ -1023,21 +1115,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PutTestController();
 
         const promise=controller.putModel.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'put',
     path: '/v1/PutTest/Location',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1045,21 +1139,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PutTestController();
 
         const promise=controller.putModelAtLocation.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'put',
     path: '/v1/PutTest/Multi',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1067,21 +1163,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PutTestController();
 
         const promise=controller.putWithMultiReturn.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'put',
     path: '/v1/PutTest/WithId/{id}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           id: { "in": "path", "name": "id", "required": true, "dataType": "double" },
         };
@@ -1090,21 +1188,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new PutTestController();
 
         const promise=controller.putWithId.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/Get',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1112,21 +1212,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.getMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/MethodTest/Post',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1134,21 +1236,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.postMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'patch',
     path: '/v1/MethodTest/Patch',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1156,21 +1260,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.patchMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'put',
     path: '/v1/MethodTest/Put',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1178,21 +1284,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.putMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'delete',
     path: '/v1/MethodTest/Delete',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1200,21 +1308,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.deleteMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/Description',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1222,21 +1332,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.description.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/Tags',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1244,21 +1356,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.tags.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/MultiResponse',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1266,21 +1380,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.multiResponse.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/SuccessResponse',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1288,26 +1404,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.successResponse.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/ApiSecurity',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "api_key" }])
+          method: authenticateMiddleware([{ "api_key": [] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1315,26 +1434,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.apiSecurity.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/OauthSecurity',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }])
+          method: authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1342,26 +1464,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.oauthSecurity.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/OauthOrAPIkeySecurity',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }, { "name": "api_key" }])
+          method: authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }, { "api_key": [] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1369,21 +1494,53 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.oauthOrAPIkeySecurity.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
+      }
+    }
+  });
+  server.route({
+    method: 'get',
+    path: '/v1/MethodTest/OauthAndAPIkeySecurity',
+    options: {
+      pre: [
+        {
+          method: authenticateMiddleware([{ "api_key": [], "tsoa_auth": ["write:pets", "read:pets"] }]),
+          assign: "user"
+        }
+      ],
+      handler: (request: any, h: any) => {
+        const args={
+        };
+
+        let validatedArgs: any[]=[];
+        try {
+          validatedArgs=getValidatedArgs(args, request);
+        } catch (err) {
+          return h
+            .response(err)
+            .code(err.status||500);
+        }
+
+        const controller=new MethodController();
+
+        const promise=controller.oauthAndAPIkeySecurity.apply(controller, validatedArgs);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/DeprecatedMethod',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1391,21 +1548,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.deprecatedMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/SummaryMethod',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1413,21 +1572,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.summaryMethod.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/MethodTest/returnAnyType',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1435,21 +1596,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new MethodController();
 
         const promise=controller.returnAnyType.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/Query',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           firstname: { "in": "query", "name": "firstname", "required": true, "dataType": "string" },
           lastname: { "in": "query", "name": "last_name", "required": true, "dataType": "string" },
@@ -1463,21 +1626,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getQuery.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/Path/{firstname}/{last_name}/{age}/{weight}/{human}/{gender}',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           firstname: { "in": "path", "name": "firstname", "required": true, "dataType": "string" },
           lastname: { "in": "path", "name": "last_name", "required": true, "dataType": "string" },
@@ -1491,21 +1656,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getPath.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/Header',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           firstname: { "in": "header", "name": "firstname", "required": true, "dataType": "string" },
           lastname: { "in": "header", "name": "last_name", "required": true, "dataType": "string" },
@@ -1519,21 +1686,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getHeader.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/Request',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -1542,21 +1711,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getRequest.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/ParameterTest/Body',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           body: { "in": "body", "name": "body", "required": true, "ref": "ParameterTestModel" },
         };
@@ -1565,21 +1736,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getBody.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/ParameterTest/BodyProps',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           firstname: { "in": "body-prop", "name": "firstname", "required": true, "dataType": "string" },
           lastname: { "in": "body-prop", "name": "lastname", "required": true, "dataType": "string" },
@@ -1593,21 +1766,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.getBodyProps.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/ParamaterQueyAnyType',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           name: { "in": "query", "name": "name", "required": true, "dataType": "any" },
         };
@@ -1616,21 +1791,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.queryAnyType.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/ParameterTest/ParamaterQueyArray',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           name: { "in": "query", "name": "name", "required": true, "dataType": "array", "array": { "dataType": "string" } },
         };
@@ -1639,21 +1816,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.queyArray.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/ParameterTest/ParamaterBodyAnyType',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           body: { "in": "body", "name": "body", "required": true, "dataType": "any" },
         };
@@ -1662,21 +1841,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.bodyAnyType.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/ParameterTest/ParamaterBodyArrayType',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           body: { "in": "body", "name": "body", "required": true, "dataType": "array", "array": { "ref": "ParameterTestModel" } },
         };
@@ -1685,21 +1866,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.bodyArrayType.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/ParamaterImplicitString',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           name: { "default": "Iron man", "in": "query", "name": "name", "dataType": "string" },
         };
@@ -1708,21 +1891,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitString.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/ParamaterImplicitNumber',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           age: { "default": 40, "in": "query", "name": "age", "dataType": "double" },
         };
@@ -1731,21 +1916,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitNumber.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/ParamaterImplicitEnum',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           gender: { "in": "query", "name": "gender", "dataType": "enum", "enums": ["MALE", "FEMALE"] },
         };
@@ -1754,21 +1941,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitEnum.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/ParamaterImplicitStringArray',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           arr: { "default": ["V1", "V2"], "in": "query", "name": "arr", "dataType": "array", "array": { "dataType": "string" } },
         };
@@ -1777,21 +1966,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitStringArray.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/paramaterImplicitNumberArray',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           arr: { "default": [1, 2, 3], "in": "query", "name": "arr", "dataType": "array", "array": { "dataType": "double" } },
         };
@@ -1800,21 +1991,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitNumberArray.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/paramaterImplicitDateTime',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           date: { "default": "2017-01-01T00:00:00.000Z", "in": "query", "name": "date", "dataType": "datetime" },
         };
@@ -1823,21 +2016,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitDateTime.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/ParameterTest/paramaterImplicitDate',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           date: { "default": "2018-01-14", "in": "query", "name": "date", "dataType": "date", "validators": { "isDate": { "errorMsg": "date" } } },
         };
@@ -1846,26 +2041,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ParameterController();
 
         const promise=controller.implicitDate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/SecurityTest',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "api_key" }])
+          method: authenticateMiddleware([{ "api_key": [] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -1874,26 +2072,60 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new SecurityTestController();
 
         const promise=controller.GetWithApi.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
+      }
+    }
+  });
+  server.route({
+    method: 'get',
+    path: '/v1/SecurityTest/Hapi',
+    options: {
+      pre: [
+        {
+          method: authenticateMiddleware([{ "api_key": [] }]),
+          assign: "user"
+        }
+      ],
+      handler: (request: any, h: any) => {
+        const args={
+          request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
+        };
+
+        let validatedArgs: any[]=[];
+        try {
+          validatedArgs=getValidatedArgs(args, request);
+        } catch (err) {
+          return h
+            .response(err)
+            .code(err.status||500);
+        }
+
+        const controller=new SecurityTestController();
+
+        const promise=controller.GetWithApiForHapi.apply(controller, validatedArgs);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/SecurityTest/Koa',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "api_key" }])
+          method: authenticateMiddleware([{ "api_key": [] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -1902,26 +2134,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new SecurityTestController();
 
         const promise=controller.GetWithApiForKoa.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/SecurityTest/Oauth',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }])
+          method: authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -1930,26 +2165,29 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new SecurityTestController();
 
         const promise=controller.GetWithSecurity.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/SecurityTest/OauthOrAPIkey',
-    config: {
+    options: {
       pre: [
         {
-          method: authenticateMiddleware([{ "name": "tsoa_auth", "scopes": ["write:pets", "read:pets"] }, { "name": "api_key" }])
+          method: authenticateMiddleware([{ "tsoa_auth": ["write:pets", "read:pets"] }, { "api_key": [] }]),
+          assign: "user"
         }
       ],
-      handler: (request: any, reply: any) => {
+      handler: (request: any, h: any) => {
         const args={
           request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
         };
@@ -1958,21 +2196,54 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new SecurityTestController();
 
-        const promise=controller.GetWithDoubleSecurity.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        const promise=controller.GetWithOrSecurity.apply(controller, validatedArgs);
+        return promiseHandler(controller, promise, request, h);
+      }
+    }
+  });
+  server.route({
+    method: 'get',
+    path: '/v1/SecurityTest/OauthAndAPIkey',
+    options: {
+      pre: [
+        {
+          method: authenticateMiddleware([{ "api_key": [], "tsoa_auth": ["write:pets", "read:pets"] }]),
+          assign: "user"
+        }
+      ],
+      handler: (request: any, h: any) => {
+        const args={
+          request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
+        };
+
+        let validatedArgs: any[]=[];
+        try {
+          validatedArgs=getValidatedArgs(args, request);
+        } catch (err) {
+          return h
+            .response(err)
+            .code(err.status||500);
+        }
+
+        const controller=new SecurityTestController();
+
+        const promise=controller.GetWithAndSecurity.apply(controller, validatedArgs);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Controller/normalStatusCode',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -1980,21 +2251,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new TestController();
 
         const promise=controller.normalStatusCode.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Controller/noContentStatusCode',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -2002,21 +2275,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new TestController();
 
         const promise=controller.noContentStatusCode.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Controller/falseStatusCode',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -2024,21 +2299,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new TestController();
 
         const promise=controller.falseStatusCode.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Controller/customStatusCode',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -2046,21 +2323,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new TestController();
 
         const promise=controller.customNomalStatusCode.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Controller/customHeader',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
         };
 
@@ -2068,21 +2347,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new TestController();
 
         const promise=controller.customHeader.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/date',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           minDateValue: { "in": "query", "name": "minDateValue", "required": true, "dataType": "date", "validators": { "isDate": { "errorMsg": "minDateValue" }, "minDate": { "value": "2018-01-01" } } },
           maxDateValue: { "in": "query", "name": "maxDateValue", "required": true, "dataType": "date", "validators": { "isDate": { "errorMsg": "maxDateValue" }, "maxDate": { "value": "2016-01-01" } } },
@@ -2092,21 +2373,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.dateValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/datetime',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           minDateValue: { "in": "query", "name": "minDateValue", "required": true, "dataType": "datetime", "validators": { "isDateTime": { "errorMsg": "minDateValue" }, "minDate": { "value": "2018-01-01T00:00:00" } } },
           maxDateValue: { "in": "query", "name": "maxDateValue", "required": true, "dataType": "datetime", "validators": { "isDateTime": { "errorMsg": "maxDateValue" }, "maxDate": { "value": "2016-01-01T00:00:00" } } },
@@ -2116,21 +2399,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.dateTimeValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/integer',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           minValue: { "in": "query", "name": "minValue", "required": true, "dataType": "integer", "validators": { "isInt": { "errorMsg": "minValue" }, "minimum": { "value": 5 } } },
           maxValue: { "in": "query", "name": "maxValue", "required": true, "dataType": "integer", "validators": { "isInt": { "errorMsg": "maxValue" }, "maximum": { "value": 3 } } },
@@ -2140,21 +2425,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.longValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/float',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           minValue: { "in": "query", "name": "minValue", "required": true, "dataType": "float", "validators": { "isFloat": { "errorMsg": "minValue" }, "minimum": { "value": 5.5 } } },
           maxValue: { "in": "query", "name": "maxValue", "required": true, "dataType": "float", "validators": { "isFloat": { "errorMsg": "maxValue" }, "maximum": { "value": 3.5 } } },
@@ -2164,21 +2451,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.doubleValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/boolean',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           boolValue: { "in": "query", "name": "boolValue", "required": true, "dataType": "boolean", "validators": { "isBoolean": { "errorMsg": "boolValue" } } },
         };
@@ -2187,21 +2476,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.booleanValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/string',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           minLength: { "in": "query", "name": "minLength", "required": true, "dataType": "string", "validators": { "minLength": { "value": 5 } } },
           maxLength: { "in": "query", "name": "maxLength", "required": true, "dataType": "string", "validators": { "maxLength": { "value": 3 } } },
@@ -2212,21 +2503,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.stringValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/customRequiredErrorMsg',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           longValue: { "in": "query", "name": "longValue", "required": true, "dataType": "long", "validators": { "isLong": { "errorMsg": "Required long number." } } },
         };
@@ -2235,21 +2528,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.customRequiredErrorMsg.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'get',
     path: '/v1/Validate/parameter/customInvalidErrorMsg',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           longValue: { "in": "query", "name": "longValue", "required": true, "dataType": "long", "validators": { "isLong": { "errorMsg": "Invalid long number." } } },
         };
@@ -2258,21 +2553,23 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.customInvalidErrorMsg.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
   server.route({
     method: 'post',
     path: '/v1/Validate/body',
-    config: {
-      handler: (request: any, reply: any) => {
+    options: {
+      handler: (request: any, h: any) => {
         const args={
           body: { "in": "body", "name": "body", "required": true, "ref": "ValidateModel" },
         };
@@ -2281,38 +2578,61 @@ export function RegisterRoutes(server: any) {
         try {
           validatedArgs=getValidatedArgs(args, request);
         } catch (err) {
-          return reply(err).code(err.status||500);
+          return h
+            .response(err)
+            .code(err.status||500);
         }
 
         const controller=new ValidateController();
 
         const promise=controller.bodyValidate.apply(controller, validatedArgs);
-        return promiseHandler(controller, promise, request, reply);
+        return promiseHandler(controller, promise, request, h);
       }
     }
   });
 
   function authenticateMiddleware(security: TsoaRoute.Security[]=[]) {
-    return (request: any, reply: any) => {
+    return (request: any, h: any) => {
       let responded=0;
       let success=false;
+
+      const succeed=function(user: any) {
+        if (!success) {
+          success=true;
+          responded++;
+          request['user']=user;
+        }
+        return user;
+      };
+
+      const fail=function(error: any) {
+        responded++;
+        if (responded==security.length&&!success) {
+          h.response(error).code(error.status||401);
+        }
+        return error;
+      };
+
       for (const secMethod of security) {
-        hapiAuthentication(request, secMethod.name, secMethod.scopes).then((user: any) => {
-          // only need to respond once
-          if (!success) {
-            success=true;
-            responded++;
-            request['user']=user;
-            reply.continue();
+        if (Object.keys(secMethod).length>1) {
+          let promises: Promise<any>[]=[];
+
+          for (const name in secMethod) {
+            promises.push(hapiAuthentication(request, name, secMethod[name]));
           }
-        })
-          .catch((error: any) => {
-            responded++;
-            if (responded==security.length&&!success) {
-              reply(error).code(error.status||401);
-            }
-          })
+
+          return Promise.all(promises)
+            .then((users) => { succeed(users[0]); })
+            .catch(fail);
+        } else {
+          for (const name in secMethod) {
+            return hapiAuthentication(request, name, secMethod[name])
+              .then(succeed)
+              .catch(fail);
+          }
+        }
       }
+      return null;
     }
   }
 
@@ -2320,10 +2640,12 @@ export function RegisterRoutes(server: any) {
     return 'getHeaders' in object&&'getStatus' in object&&'setStatus' in object;
   }
 
-  function promiseHandler(controllerObj: any, promise: any, request: any, reply: any) {
+  function promiseHandler(controllerObj: any, promise: any, request: any, h: any) {
     return Promise.resolve(promise)
       .then((data: any) => {
-        const response=(data||data===false)? reply(data).code(200):reply("").code(204);
+        const response=(data||data===false)
+          ? h.response(data).code(200)
+          :h.response("").code(204);
 
         if (isController(controllerObj)) {
           const headers=controllerObj.getHeaders();
@@ -2338,7 +2660,7 @@ export function RegisterRoutes(server: any) {
         }
         return response;
       })
-      .catch((error: any) => reply(error).code(error.status||500));
+      .catch((error: any) => h.response(error).code(error.status||500));
   }
 
   function getValidatedArgs(args: any, request: any): any[] {
